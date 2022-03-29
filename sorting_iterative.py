@@ -3,19 +3,22 @@
 
 def is_sorted(items):
     """Return a boolean indicating whether given items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
+    TODO: Running time: Worst case, average case and best case you must go through entire array, so its O(n).
     TODO: Memory usage: ??? Why and under what conditions?"""
     # TODO: Check that all adjacent items are in order, return early if so
     """Average O(n) Best O(1)"""
 
     isSorted = True
-    for idx, val in enumerate(items, start = 1):
-        first_num = idx-1
-        second_num = idx
+    if items == [] or len(items)==1:
+        return isSorted
+    for idx in range(len(items)-1):
+        first_num = items[idx]
+        second_num = items[idx+1]
         if second_num > first_num:
             isSorted = True
         else:
-            return False
+            isSorted = False
+    return isSorted
 
 def bubble_sort(items):
     """Sort given items by swapping adjacent items that are out of order, and
@@ -49,10 +52,17 @@ def selection_sort(items):
     
     """
     
-  
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Find minimum item in unsorted items
-    # TODO: Swap it with first unsorted item
+    for i in range(len(items)):
+        min = i
+        #Find min item in unsorted items in the rest of the unsorted array
+        for j in range(i+1, len(items)):
+            if items[min] > items[j]:
+                min = j
+                
+        # Swaps it with the first unsorted item in finds
+        items[i], items[min] = items[min], items[i]
+    return items
+
 print(selection_sort([1,7,4,3,2]))
 
 def insertion_sort(items):
@@ -63,11 +73,20 @@ def insertion_sort(items):
 
     # [1,7,4,3,2 ]
     #  i   j
+    #Repeat until all items are in sorted order
+    for i in range(1, len(items)):
+ 
+        pivot = items[i]
+ 
+        #Go through items before pivot
+        j = i-1
+        while j >= 0 and pivot < items[j]:
+            #If a previous value is greater, swap it to put it in sorted order
+            if items[j] > items[j+1]:
+                items[j], items[j+1] = items[j+1], items[j]
+            j -= 1
 
-    # Traverse through 1 to len(arr)
-
+        
+    return items
 
 print(insertion_sort([1,7,4,3,2]))       
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Take first unsorted item
-    # TODO: Insert it in sorted order in front of items
