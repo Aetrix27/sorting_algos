@@ -3,10 +3,9 @@
 
 def is_sorted(items):
     """Return a boolean indicating whether given items are in sorted order.
-    TODO: Running time: Worst case, average case and best case you must go through entire array, so its O(n).
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Check that all adjacent items are in order, return early if so
-    """Average O(n) Best O(1)"""
+    Running time: Average O(n), need to iterate through the list
+    Memory usage: Best O(1), memory does not depend on input size.
+    """ 
 
     isSorted = True
     if items == [] or len(items)==1:
@@ -18,28 +17,26 @@ def is_sorted(items):
             isSorted = True
         else:
             isSorted = False
+            return isSorted
     return isSorted
+print(is_sorted(['D', 'A', 'C']))
 
 def bubble_sort(items):
     """Sort given items by swapping adjacent items that are out of order, and
     repeating until all items are in sorted order.
-    TODO: Running time: O(n^2) in average and worst case, O(n) best case
-    TODO: Memory usage: ??? Why and under what conditions?
-    Memory is O(n) because a new variable is assigned each time in the loop
+    Running time: O(n^2) in average and worst case, O(n) best case where numbers are already sorted
+    Memory is O(1) because the array sorted in place and no extra memory is used.
     
     """
     
-    #line 2 has -1 in it as well since once we get to  the last traversal, a singular element can’t be sorted any further
+    #Subtract one in the last traversal, since a singular element can’t be sorted any further
 
     for _ in range(len(items) - 1):
         for j in range(len(items) - 1 - _):
-
+            #Swap the adjacent items that are out of order
             if items[j]> items[j+1]:
                 items[j], items[j+1] = items[j+1], items[j]
     return items
-        
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Swap adjacent items that are out of order
 
 print(bubble_sort([2,5,1,2,3]))
 
@@ -47,8 +44,8 @@ print(bubble_sort([2,5,1,2,3]))
 def selection_sort(items):
     """Sort given items by finding minimum item, swapping it with first
     unsorted item, and repeating until all items are in sorted order.
-    TODO: Running time: 
-    TODO: Memory usage: ??? Why and under what conditions
+    Running time: O(n^2) average and worst cases, since it must past through the array twice.
+    Memory usage: O(1) since the memory does not depend on input size.
     
     """
     
@@ -68,14 +65,14 @@ print(selection_sort([1,7,4,3,2]))
 def insertion_sort(items):
     """Sort given items by taking first unsorted item, inserting it in sorted
     order in front of items, and repeating until all items are in order.
-    TODO: Running time: O(n) when array is sorted or you only need to pass through one time and O(n)^2 for the average and best case
-    TODO: Memory usage: O(n) """
+    Running time: O(n) when array is sorted or you only need to pass through one time and O(n)^2 for the average and best case
+    Memory usage: O(1) since memory does not depend on the input size.
+    """
 
     # [1,7,4,3,2 ]
     #  i   j
     #Repeat until all items are in sorted order
     for i in range(1, len(items)):
- 
         pivot = items[i]
  
         #Go through items before pivot
